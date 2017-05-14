@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>data</title>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div>
+<table width="50%" align="center"  height="60%">
+<tr ng-repeat="x in records">
+<th>college name</th>
+<th>college area</th>
+<th>college fee</th>
+</tr>
+<tr ng-repeat="x in names">
+<td>{{x.name}}</td>
+<td>{{x.area}}</td>
+<td>{{x.fee}}</td>
+</tr>
+</table>
+</div>
+<script>
+var app=angular.module('myApp',[]);
+app.controller('myCtrl',function($scope,$http){
+$scope.records=[{
+"name":"name"
+"area":"area"
+"fee":"fee"
+}]
+var req={
+method:'POST',
+url:'http://localhost:3000/data',
+headers:{
+'Content-Type':'Application/json'
+},
+}
+$http(req)
+.then(function(response)
+{
+$scope.names=(response.data.records;);
+});
+});
+</script>
+</body>
+</html>
+
+

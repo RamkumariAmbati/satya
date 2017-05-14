@@ -1,0 +1,71 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<title>retrieve</title>
+</head>
+<body>
+<div align="center" ng-app="myApp" ng-controller="myCtrl"><div>
+<form>
+college name:<input type="text" ng-model="name"/><br><br><br>
+<input type="button" value="ok" ng-click="myFun()"/>
+</form>
+</div>
+<div>
+ <table width="50%" align="center" height="60">
+                <tr ng-repeat="x in records">
+                    <th>college name</th>
+                    <th>area</th>
+                        <th>fee</th>
+                   
+                
+                </tr>
+
+                <tr ng-repeat="x in names">
+                    <td>{{x.name}}</td>
+                    <td>{{x.area}}</td>
+                    <td>{{x.fee}}</td>
+                 
+                
+                </tr>
+
+            </table>
+			</div>
+<script>
+
+var app=angular.module('myApp',[]);
+app.controller('myCtrl',function($scope,$http){
+$scope.myFun=function()
+{
+alert("can i retrieve");
+$scope.records=[{
+"name":"name",
+"area":"area",
+"fee":"fee"
+}]
+var name=$scope.name;
+alert(name);
+var req={
+method:'POST',
+url:'http://localhost:3000/retrieve',
+headers:{
+'Content-Type':'Application/json'
+},
+data:{
+name:name
+}
+}
+alert("here");
+$http(req)
+.then(function(response)
+{
+alert("hi");
+$scope.names=(response.data);
+alert($scope.names);
+});
+};
+});
+</script>
+</div>
+</body>
+</html>

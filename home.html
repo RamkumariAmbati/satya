@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>home</title>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+<form align="left">
+<a href="p">insert</a>
+&nbsp;&nbsp;&nbsp;
+<a href="retrieve">retrieve</a>
+&nbsp;&nbsp;&nbsp;
+<a href="delete">delete</a>
+&nbsp;&nbsp;&nbsp;
+<a href="update">update </a>
+&nbsp;&nbsp;&nbsp;
+<a href="data">data</a>
+&nbsp;&nbsp;&nbsp;
+</form>
+<script>
+var app=angular.module('myApp',[]);
+app.controller('myCtrl',function($scope,$http)
+{
+var req={
+method:'POST',
+url:'http://localhost:3000/start',
+headers:{'Content-Type':'Application/json'},
+}
+$http(req)
+});
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<title>learning</title>
+ <!--<link rel="shortcut icon" href="favicon.ico">-->
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" >
+<div>
+<div align="center" >
+<form>
+college name:<input type="text" ng-model="name"/>
+<br><br>
+college area:<input type="text" ng-model="area"/>
+<br><br>
+college fee:<input type="text" ng-model="fee"/>
+<br><br>
+<input type="button" value="submit" ng-click="perform()"/>
+</form>
+<p></p>
+</div>
+
+<script>
+var fun=angular.module('myApp',[]);
+fun.controller('myCtrl',function ($scope,$http){
+$scope.perform=function()
+{
+alert("insert data");
+console.log($scope.name+""+$scope.area+""+$scope.fee)
+var req={
+method:'POST',
+url:'http://localhost:3000/insert',
+headers:{'Content-Type':'Application/json'},
+data:
+{
+name:$scope.name,
+area:$scope.area,
+fee:$scope.fee
+}
+}
+$http(req)
+.then(function(response)
+{
+$scope.names=JSON.stringify(response.data);
+alert($scope.names);
+});
+};
+});
+</script>
+</body>
+</html>
+
+
+
+
